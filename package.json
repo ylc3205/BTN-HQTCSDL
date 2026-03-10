@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "express-rate-limit": "^8.3.1",
     "react-resizable-panels": "^4.6.5"
   }
 }
