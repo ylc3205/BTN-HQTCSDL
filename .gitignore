@@ -1,0 +1,61 @@
+# =====================================
+# Backend (be)
+# =====================================
+be/node_modules/
+be/.env
+be/dist/
+be/build/
+be/coverage/
+be/logs/
+be/uploads/
+
+# Backend (new structure)
+backend/node_modules/
+backend/.env
+backend/dist/
+backend/build/
+backend/logs/
+
+# =====================================
+# Frontend (fe)
+# =====================================
+fe/node_modules/
+fe/dist/
+fe/build/
+fe/.env
+fe/.next/
+fe/.vite/
+fe/coverage/
+
+# =====================================
+# Root
+# =====================================
+node_modules/
+.env
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Cache
+.cache/
+tmp/
+temp/
+
+# Database local files
+*.sqlite
+*.sqlite3
+*.db
+
+# TypeScript
+*.tsbuildinfo
