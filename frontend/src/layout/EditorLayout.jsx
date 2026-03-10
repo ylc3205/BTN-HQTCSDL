@@ -1,13 +1,14 @@
 import { useState, useRef } from "react";
+import Navbar from "../components/Navbar";
 
-export default function EditorLayout({left, query, results}) {
+export default function EditorLayout({ left, query, results }) {
   const [leftWidth, setLeftWidth] = useState(30);
   const [topHeight, setTopHeight] = useState(70);
 
   const containerRef = useRef(null);
   const rightRef = useRef(null);
 
-  const handleHorizontalResize = (e) => {
+  const handleHorizontalResize = () => {
     const container = containerRef.current;
     const containerWidth = container.offsetWidth;
 
@@ -28,7 +29,7 @@ export default function EditorLayout({left, query, results}) {
     }, { once: true });
   };
 
-  const handleVerticalResize = (e) => {
+  const handleVerticalResize = () => {
     const container = rightRef.current;
     const containerHeight = container.offsetHeight;
 
@@ -50,44 +51,47 @@ export default function EditorLayout({left, query, results}) {
   };
 
   return (
-    <div
-      ref={containerRef}
-      className="bg-[#0a0a0a] h-screen text-white flex p-4"
-    >
+    <div className="flex flex-col h-screen bg-[#0a0a0a] overflow-hidden">
+      <Navbar />
       <div
-        style={{ width: `${leftWidth}%` }}
-        className="bg-[#141414] rounded-lg p-4 border border-gray-800"
-      >
-        {left}
-      </div>
-
-      <div
-        onMouseDown={handleHorizontalResize}
-        className="w-2 cursor-col-resize bg-dark hover:bg-gray-500"
-      />
-
-      <div
-        ref={rightRef}
-        style={{ width: `${100 - leftWidth}%` }}
-        className="flex flex-col"
+        ref={containerRef}
+        className="flex-1 text-white flex p-4 gap-1 min-h-0"
       >
         <div
-          style={{ height: `${topHeight}%` }}
-          className="bg-[#141414] rounded-lg p-4 border border-gray-800 overflow-hidden"
+          style={{ width: `${leftWidth}%` }}
+          className="rounded-lg border border-[#3E3E42] overflow-hidden"
         >
-          {query}
+          {left}
         </div>
 
         <div
-          onMouseDown={handleVerticalResize}
-          className="h-2 flex-none cursor-row-resize bg-dark hover:bg-gray-500"
+          onMouseDown={handleHorizontalResize}
+          className="w-2 cursor-col-resize hover:bg-[#3E3E42] transition-colors flex-none"
         />
 
         <div
-          style={{ height: `${100 - topHeight}%` }}
-          className="bg-[#141414] rounded-lg p-4 border border-gray-800 overflow-hidden"
+          ref={rightRef}
+          style={{ width: `${100 - leftWidth}%` }}
+          className="flex flex-col"
         >
-          {results}
+          <div
+            style={{ height: `${topHeight}%` }}
+            className="rounded-lg border border-[#3E3E42] overflow-hidden"
+          >
+            {query}
+          </div>
+
+          <div
+            onMouseDown={handleVerticalResize}
+            className="h-2 flex-none cursor-row-resize hover:bg-[#3E3E42] transition-colors"
+          />
+
+          <div
+            style={{ height: `${100 - topHeight}%` }}
+            className="rounded-lg border border-[#3E3E42] overflow-hidden"
+          >
+            {results}
+          </div>
         </div>
       </div>
     </div>
